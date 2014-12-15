@@ -1,34 +1,35 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+#include <iostream>     // std::cout
+#include <fstream>      // std::ifstream
+#include <stdio.h>
+#include <ctype.h>
 
-using namespace std;
+int main() {
 
-int main()
-{
-    unsigned char ch;
+    std::ifstream file("/var/log/wtmp", std::ifstream::binary);
+    if (file) {
+        // get length of file:
+        file.seekg(0, file.end);
+        int length = file.tellg();
+        file.seekg(0, file.beg);
 
-/*  '0' = 0x30 = %00110000
-    '1' = 0x31 = %00110001   */
+        char * buffer = new char[length];
 
-    ofstream ostream("test.txt", ios::binary);
-    ostream.write("1", 1);
-    ostream.close();
+        std::cout << "Reading " << length << " characters... " << std::endl;
+        // read data as a block:
+        file.read(buffer, length);
 
-    ifstream istream("/var/log/wtmp");
-    while (ch = istream.get() != NULL) {
-        printf("%d", (ch & 0x80) / 0x80);
-        printf("%d", (ch & 0x40) / 0x40);
-        printf("%d", (ch & 0x20) / 0x20);
-        printf("%d", (ch & 0x10) / 0x10);
-        printf("%d", (ch & 0x08) / 0x08);
-        printf("%d", (ch & 0x04) / 0x04);
-        printf("%d", (ch & 0x02) / 0x02);
-        printf("%d\n", (ch & 0x01) / 0x01);
-        //Output: 00110001
+        if (file)
+            std::cout << "all characters read successfully." << std::endl;
+        else
+            std::cout << "error: only " << file.gcount() << " could be read"
+                    << std::endl;
+        file.close();
+        for (int i = 0; i < length; i++) {
+            if (!buffer[i] == NULL) {
+                std::cout << buffer[i];
+            }
+        }
+        delete[] buffer;
     }
-    istream.close();
-
-    cin.ignore();
     return 0;
 }
