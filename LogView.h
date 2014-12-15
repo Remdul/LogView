@@ -22,6 +22,4 @@ private:
 		std::string hostName;
 };
 
-Entries::Entries ();
-
 #endif /* LOGVIEW_H_ */
