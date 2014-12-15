@@ -2,21 +2,24 @@
 #include <fstream>      // std::ifstream
 #include <stdio.h>
 #include <ctype.h>
+#include <utmp.h>
 
 int main() {
 
-    std::ifstream file("/var/log/wtmp", std::ifstream::binary);
+    std::ifstream file("/var/run/utmp", std::ifstream::binary);
     if (file) {
         // get length of file:
         file.seekg(0, file.end);
-        int length = file.tellg();
+        int length = utmp;
         file.seekg(0, file.beg);
 
-        char * buffer = new char[length];
+        utmp my_utmp;
 
         std::cout << "Reading " << length << " characters... " << std::endl;
         // read data as a block:
-        file.read(buffer, length);
+        file.read((char *) &my_utmp, sizeof(utmp)); //this will read 1 struct in
+        //you will need to loop and repeat the process
+        
 
         if (file)
             std::cout << "all characters read successfully." << std::endl;
