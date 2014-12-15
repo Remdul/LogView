@@ -4,17 +4,16 @@
 #include <ctype.h>
 #include <utmp.h>
 
-void Entry::setEntry(char newUserName, char newID, char newDevName, pid_t newPSID, short newEntryType, int32_t newEntryTime, long newTermStatus, struct newExitStatus, char newHostName)
-{
-	newUserName = userName;
-	newID = ID;
-	newDevName = devName;
-	newPSID = PSID;
-	newEntryType = entryType;
-	newEntryTime = entryTime;
-	newTermStatus = termStatus;
-	newExitStatus = exitStatus;
-	newHostName = hostName;
+void Entry::setEntry(char newUserName, char newID, char newDevName,
+        pid_t newPSID, short int newEntryType, int32_t newEntryTime,
+        char newHostName) {
+    newUserName = userName;
+    newID = ID;
+    newDevName = devName;
+    newPSID = PSID;
+    newEntryType = entryType;
+    newEntryTime = entryTime;
+    newHostName = hostName;
 
 }
 
@@ -28,11 +27,14 @@ int main() {
         utmp blockEntry;
         // read data as a block:
         file.read((char *) &blockEntry, sizeof(utmp));
-        std::cout << "Reading " << sizeof(utmp) << " characters... " << std::endl;
-        std::cout << blockEntry.ut_type << std::endl;
-        std::cout << blockEntry.ut_user << std::endl;
-        std::cout << blockEntry.ut_pid << std::endl;
+        std::cout << "Reading " << sizeof(utmp) << " characters... "
+                << std::endl;
+        Entry newEntry;
+        newEntry.setEntry(blockEntry.ut_user, blockEntry.ut_id,
+                blockEntry.ut_line, blockEntry.ut_pid, blockEntry.ut_type,
+                blockEntry.ut_tv, blockEntry.ut_host);
 
+        blockEntry.ut_user
         if (file)
             std::cout << "all characters read successfully." << std::endl;
         else
@@ -42,41 +44,3 @@ int main() {
     }
     return 0;
 }
-
-
-
-
-/*
- *     short   ut_type;               Type of record
-       pid_t   ut_pid;                PID of login process
-       char    ut_line[UT_LINESIZE];  Device name of tty - "/dev/"
-       char    ut_id[4];              Terminal name suffix,
-                                        or inittab(5) ID
-       char    ut_user[UT_NAMESIZE];  Username
-       char    ut_host[UT_HOSTSIZE];  Hostname for remote login, or
-                                        kernel version for run-level
-                                        messages
-       struct  exit_status ut_exit;   Exit status of a process
-                                        marked as DEAD_PROCESS; not
-                                        used by Linux init(8)
-        The ut_session and ut_tv fields must be the same size when
-          compiled 32- and 64-bit.  This allows data files and shared
-          memory to be shared between 32- and 64-bit applications.
-   #if __WORDSIZE == 64 && defined __WORDSIZE_COMPAT32
-       int32_t ut_session;            Session ID (getsid(2)),
-                                        used for windowing
-       struct {
-           int32_t tv_sec;            Seconds
-           int32_t tv_usec;           Microseconds
-       } ut_tv;                       Time entry was made
-   #else
-        long   ut_session;            Session ID
-        struct timeval ut_tv;         Time entry was made
-   #endif
-
-       int32_t ut_addr_v6[4];         Internet address of remote
-                                        host; IPv4 address uses
-                                        just ut_addr_v6[0]
-       char __unused[20];             Reserved for future use
- *
- * */
