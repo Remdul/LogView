@@ -3,23 +3,24 @@
 
 #include <iostream>
 #include <string>
+#include <utmp.h>
 
-class Entries
+class Entry
 {
 public:
-    Entries(){}
-    void setEntries(char newUserName, std::string newID, std::string newDevName, int newPSID, std::string newEntryType, std::string newEntryTime, std::string newTermStatus, std::string newExitStatus, std::string newHostName);
-    void printEntries();
+    Entry(){}
+    void setEntry(char newUserName, char newID, char newDevName, pid_t newPSID, short newEntryType, int32_t newEntryTime, long newTermStatus, struct newExitStatus, char newHostName);
+    void printEntry();
 private:
-		std::string userName;
-		std::string ID;
-		std::string devName;
-		int PSID;
-		std::string entryType;
-		std::string entryTime;
-		std::string termStatus;
-		std::string exitStatus;
-		std::string hostName;
+		char userName;
+		char ID;
+		char devName;
+		pid_t PSID;
+		short entryType;
+		int32_t entryTime;
+		long termStatus;
+		struct exitStatus;
+		char hostName;
 };
 
 void menuHeader();
