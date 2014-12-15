@@ -22,4 +22,8 @@ private:
 		std::string hostName;
 };
 
+void menuHeader();
+void menuBody();
+void menuFooter();
+
 #endif /* LOGVIEW_H_ */
