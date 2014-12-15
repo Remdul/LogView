@@ -12,10 +12,10 @@ void menuHeader() {
 }
 
 void menuBody(Entry blockInput) {
-    std::cout << std::setw(12) << blockInput.ut_user << std::setw(6)
-            << blockInput.ut_id << std::setw(12) << blockInput.ut_line
-            << std::setw(6) << blockInput.ut_pid << std::setw(12)
-            << blockInput.ut_type << std::setw(14) << blockInput.ut_tv
-            << std::setw(14) << blockInput.ut_status << std::setw(14)
-            << blockInput.ut_exit << std::setw(12) << ut_host << std::endl;
+    std::cout << std::setw(12) << blockInput.userName << std::setw(6)
+            << blockInput.ID << std::setw(12) << blockInput.devName
+            << std::setw(6) << blockInput.PSID << std::setw(12)
+            << blockInput.entryType << std::setw(14) << blockInput.entryTime
+            << std::setw(14) << blockInput.termStatus << std::setw(14)
+            << blockInput.exitStatus << std::setw(12) << blockInput.hostName << std::endl;
 }
