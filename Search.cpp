@@ -11,7 +11,7 @@ std::string rawData(std::vector<Entry> entries) {
         stream << iter.ID << ", " << iter.devName << ", " << iter.PSID << ", "
                 << iter.entryType << ", " << iter.entryTime << ", "
                 << iter.termStatus << ", "
-//        << iter.exitStatus << ", "
+ //               << iter.exitStatus << ", "
                 << iter.hostName << "\n";
     }
     return stream.str();
