@@ -8,7 +8,7 @@ class Entries
 {
 public:
     Entries(){}
-    void setEntries(std::string newUserName, std::string newID, std::string newDevName, int newPSID, std::string newEntryType, std::string newEntryTime, std::string newTermStatus, std::string newExitStatus, std::string newHostName);
+    void setEntries(char newUserName, std::string newID, std::string newDevName, int newPSID, std::string newEntryType, std::string newEntryTime, std::string newTermStatus, std::string newExitStatus, std::string newHostName);
     void printEntries();
 private:
 		std::string userName;
