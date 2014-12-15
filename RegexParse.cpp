@@ -2,7 +2,7 @@
 #include <string>
 #include <pcrecpp.h>
 #include "LogView.h"
-
+/*
 Entries parseFile(std::string line)
 {
     std::string userName;
@@ -28,3 +28,4 @@ Entries parseFile(std::string line)
 
 
 
+*/
