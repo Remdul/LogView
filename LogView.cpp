@@ -4,6 +4,20 @@
 #include <ctype.h>
 #include <utmp.h>
 
+void Entry::setEntry(char newUserName, char newID, char newDevName, pid_t newPSID, short newEntryType, int32_t newEntryTime, long newTermStatus, struct newExitStatus, char newHostName)
+{
+	newUserName = userName;
+	newID = ID;
+	newDevName = devName;
+	newPSID = PSID;
+	newEntryType = entryType;
+	newEntryTime = entryTime;
+	newTermStatus = termStatus;
+	newExitStatus = exitStatus;
+	newHostName = hostName;
+
+}
+
 int main() {
 
     std::ifstream file("/var/run/utmp", std::ifstream::binary);
