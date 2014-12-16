@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <utmp.h>
 #include <vector>
+#include "LogView.h"
 
 int main() {
     std::ifstream utmpFile("/var/run/utmp", std::ifstream::binary);
@@ -23,6 +24,8 @@ int main() {
         }
 
         std::cout << "Read in " << blockEntries.size() << " blocks." << std::endl;
+        std::cout << rawData(blockEntries) << std::endl;
+
         utmpFile.close();
     }
     return 0;

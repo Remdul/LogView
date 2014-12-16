@@ -5,20 +5,16 @@
 #include <vector>
 #include <sstream>
 
-std::string rawData(std::vector<Entry> entries) {
+std::string rawData(std::vector<utmp> blockEntries) {
     std::ostringstream stream;
-    for (auto iter : entries) {
-        stream << iter.ID << ", " << iter.devName << ", " << iter.PSID << ", "
-                << iter.entryType << ", " << iter.entryTime << ", "
-                << iter.termStatus << ", "
- //               << iter.exitStatus << ", "
-                << iter.hostName << "\n";
+    for (auto iter : blockEntries) {
+        stream << iter.ut_user << ", "  << iter.ut_pid << ", " << iter.ut_host << "\n";
     }
     return stream.str();
 }
-
+/*
 auto search(std::string searchString, std::vector<Entry> entries) {
     pcrecpp::RE regex(R"!(^.+)()()!");
     auto test;
     return test;
-}
+}*/

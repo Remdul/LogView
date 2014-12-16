@@ -17,12 +17,12 @@ void menuBody(utmp blockInput) {
     std::cout << std::setw(15) << blockInput.ut_user << std::setw(10)
             << blockInput.ut_id << std::setw(15) << blockInput.ut_line
             << std::setw(10) << blockInput.ut_pid << std::setw(15)
-            << blockInput.ut_type << std::setw(15) << blockInput.ut_tv
-            << std::setw(15) << blockInput.ut_exit << std::setw(15)
+        //    << blockInput.ut_type << std::setw(15) << blockInput.ut_tv
+          //  << std::setw(15) << blockInput.ut_exit << std::setw(15)
     		<< blockInput.ut_host << std::endl;
 }
 
-void menuOutput(std::vector blockVector) {
+void menuOutput(std::vector<utmp> blockVector) {
 	menuHeader();
 
 	for (auto iter : blockVector) {
