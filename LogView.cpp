@@ -5,67 +5,69 @@
 #include <utmp.h>
 #include <vector>
 #include "LogView.h"
-/*
- void menuSelection(int x)
- {
- switch (x)
- {
- case '1':
- std::cout << "Search For Stuff!" << std::endl;
- break;
- case '2':
- std::cout << "Export Stuff!" << std::endl;
- break;
- case '3':
- std::cout << "Result Stuff!" << std::endl;
- break;
- case '4':
- std::cout << "Exit Stuff!" << std::endl;
- break;
- default:
- std::cout << "Blargh!" << std::endl;
- }
- }
- */
+#include <iomanip>
+#include <string>
+#include <stdio.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-	std::ifstream utmpFile("/var/run/utmp", std::ifstream::binary);
-	std::ifstream wtmpFile("/var/log/wtmp", std::ifstream::binary);
-	std::vector<utmp> blockEntries;
-	std::string cont = "yes";
+    std::cout << argv[1] << " " << argv[2] << " " << argv[3] << std::endl;
+    // Check for input command count. Only accepts 2-3 inputs. All others get menu.
+    if (argc != 2 && argc != 3)
+    {
+        printf("Cofubar Inc. wtmp/utmp log viewing and searching tool. To use, please pass the following arguments:\n");
+        printf("%25s : %30s\n", "Search <regex>", "Scan file for an entry.");
+        printf("%25s : %30s\n", "Export <filename>", "Export to specified File.");
+        printf("%25s : %30s\n\n", "View", "View contents of logs.");
+        return 0;
+    }
 
-	while(cont == "yes" || cont == "Yes")
-	{
-		std::cout << "Please enter the appropriate number. " << std::endl << std::endl;
-		std::cout << "[1] Search " << std::endl;
-		std::cout << "[2] Export to file" << std::endl;
-		std::cout << "[3] Results" << std::endl;
-		std::cout << "[4] Exit Program" << std::endl;
+    // Initialize all variables needed
+    std::ifstream utmpFile("/var/run/utmp", std::ifstream::binary);
+    std::ifstream wtmpFile("/var/log/wtmp", std::ifstream::binary);
+    std::vector<utmp> blockEntries;
 
-		if (utmpFile)
-		{
-			// get length of file:
-			utmpFile.seekg(0, utmpFile.end);
-			utmpFile.seekg(0, utmpFile.beg);
-			utmp blockEntry;
-			// read data as a block:
-			while (utmpFile)
-			{
-				utmpFile.read((char *) &blockEntry, sizeof(utmp));
-				// std::cout << "Reading " << sizeof(utmp) << " characters... "
-				//		<< std::endl;
-				blockEntries.push_back(blockEntry);
-			}
+    // Generate data from file.
+    if (utmpFile)
+    {
+        // get length of file:
+        utmpFile.seekg(0, utmpFile.end);
+        utmpFile.seekg(0, utmpFile.beg);
+        utmp blockEntry;
 
-			resultsOutput(blockEntries);
+        // Read all blocks in:
+        while (utmpFile)
+        {
+            utmpFile.read((char *) &blockEntry, sizeof(utmp));
+            blockEntries.push_back(blockEntry);
+        }
+        utmpFile.close();
+    }
 
-			std::cout << "Read in " << blockEntries.size() << " blocks."
-					<< std::endl;
-			std::cout << rawData(blockEntries) << std::endl;
 
-			utmpFile.close();
-		}
-	}
-	return 0;
+    // Evaluate Commands
+    if (argv[2] == "view" || "View")
+    {
+        std::cout << "I get here " << std::endl;
+        resultsOutput(blockEntries);
+        return 0;
+    }
+    if (argc == 3 && (argv[2] == "export" || argv[2] == "Export"))
+    {
+        std::cout << "Exporting File to: " << argv[3] << std::endl;
+//        saveToFile(blockEntries, argv[3]);
+        return 0;
+    }
+    else if (argc == 3 && (argv[2] == "search" || argv[2] == "Search"))
+    {
+        std::cout << "Searching for string: " << argv[3] << std::endl;
+        searchString(argv[3], blockEntries);
+        return 0;
+    }
+    else
+    {
+        std::cout << "Invalid Command." << std::endl;
+        return 1;
+    }
+    return 0;
 }
