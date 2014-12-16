@@ -5,7 +5,7 @@
 #include <utmp.h>
 #include <vector>
 #include "LogView.h"
-
+/*
 void menuSelection(std::string x)
 {
 	switch (x)
@@ -26,6 +26,7 @@ void menuSelection(std::string x)
 		std::cout << "Blargh!" << std::endl;
 	}
 }
+*/
 
 int main()
 {
@@ -42,10 +43,12 @@ int main()
 		while (utmpFile)
 		{
 			utmpFile.read((char *) &blockEntry, sizeof(utmp));
-			std::cout << "Reading " << sizeof(utmp) << " characters... "
-					<< std::endl;
+			// std::cout << "Reading " << sizeof(utmp) << " characters... "
+			//		<< std::endl;
 			blockEntries.push_back(blockEntry);
 		}
+
+		menuOutput(blockEntries);
 
 		std::cout << "Read in " << blockEntries.size() << " blocks."
 				<< std::endl;
