@@ -40,7 +40,7 @@ int main()
 		std::cout << "Please enter the appropriate number. " << std::endl << std::endl;
 		std::cout << "[1] Search " << std::endl;
 		std::cout << "[2] Export to file" << std::endl;
-		std::cout << "[3] "
+		std::cout << "[3] Results" << std::endl;
 
 		if (utmpFile)
 		{
