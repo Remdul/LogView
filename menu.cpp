@@ -6,25 +6,37 @@
 #include "LogView.h"
 
 void menuHeader() {
-    std::cout << std::setw(12) << "User Name"
-    		<< std::setw(6) << "ID"
-            << std::setw(15) << "Device Name"
-            << std::setw(10) << "PSID"
-            << std::setw(12) << "Entry Type"
-            // << std::setw(15) << "Entry Time"
-            // << std::setw(15) << "Exit Status"
-            << std::setw(20) << "Host Name"
+    //LINE 1
+	std::cout << std::setw(10) << "User"
+    		<< std::setw(6) << ""
+            << std::setw(8) << "Device"
+            << std::setw(8) << ""
+            << std::setw(8) << "Entry"
+            << std::setw(15) << "Entry"
+            << std::setw(8) << "Exit"
+            << std::setw(20) << ""
             << std::endl;
+	//LINE 2
+		std::cout << std::setw(10) << "Name"
+	    		<< std::setw(6) << "ID"
+	            << std::setw(8) << "Name"
+	            << std::setw(8) << "PSID"
+	            << std::setw(8) << "Type"
+	            << std::setw(15) << "Time"
+	            << std::setw(8) << "Status"
+	            << std::setw(20) << "Host Name"
+	            << "\n"
+	            << std::endl;
 }
 
 void menuBody(utmp blockInput) {
-    std::cout << std::setw(12) << blockInput.ut_user
+    std::cout << std::setw(10) << blockInput.ut_user
     		<< std::setw(6) << blockInput.ut_id
-    		<< std::setw(15) << blockInput.ut_line
-            << std::setw(10) << blockInput.ut_pid
-            << std::setw(12) << blockInput.ut_type
-            // << std::setw(15) << blockInput.ut_tv
-            // << std::setw(15) << blockInput.ut_exit
+    		<< std::setw(8) << blockInput.ut_line
+            << std::setw(8) << blockInput.ut_pid
+            << std::setw(8) << blockInput.ut_type
+            << std::setw(15) << blockInput.ut_tv.tv_sec
+            << std::setw(8) << blockInput.ut_exit.e_exit
             << std::setw(20) << blockInput.ut_host
             << std::endl;
 }
