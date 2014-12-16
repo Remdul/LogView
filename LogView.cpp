@@ -3,44 +3,27 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <utmp.h>
-
-void Entry::setEntry(char newUserName, char newID, char newDevName,
-        pid_t newPSID, short int newEntryType, int32_t newEntryTime,
-        char newHostName) {
-    newUserName = userName;
-    newID = ID;
-    newDevName = devName;
-    newPSID = PSID;
-    newEntryType = entryType;
-    newEntryTime = entryTime;
-    newHostName = hostName;
-
-}
+#include <vector>
 
 int main() {
-
-    std::ifstream file("/var/run/utmp", std::ifstream::binary);
-    if (file) {
+    std::ifstream utmpFile("/var/run/utmp", std::ifstream::binary);
+    std::ifstream wtmpFile("/var/log/wtmp", std::ifstream::binary);
+    std::vector<utmp> blockEntries;
+    if (utmpFile) {
         // get length of file:
-        file.seekg(0, file.end);
-        file.seekg(0, file.beg);
+        utmpFile.seekg(0, utmpFile.end);
+        utmpFile.seekg(0, utmpFile.beg);
         utmp blockEntry;
         // read data as a block:
-        file.read((char *) &blockEntry, sizeof(utmp));
-        std::cout << "Reading " << sizeof(utmp) << " characters... "
-                << std::endl;
-        Entry newEntry;
-        newEntry.setEntry(blockEntry.ut_user, blockEntry.ut_id,
-                blockEntry.ut_line, blockEntry.ut_pid, blockEntry.ut_type,
-                blockEntry.ut_tv, blockEntry.ut_host);
+        while (utmpFile)
+        {
+            utmpFile.read((char *) &blockEntry, sizeof(utmp));
+            std::cout << "Reading " << sizeof(utmp) << " characters... " << std::endl;
+            blockEntries.push_back(blockEntry);
+        }
 
-        blockEntry.ut_user
-        if (file)
-            std::cout << "all characters read successfully." << std::endl;
-        else
-            std::cout << "error: only " << file.gcount() << " could be read"
-                    << std::endl;
-        file.close();
+        std::cout << "Read in " << blockEntries.size() << " blocks." << std::endl;
+        utmpFile.close();
     }
     return 0;
 }

@@ -9,14 +9,14 @@ class Entry {
 public:
     Entry() {}
     void setEntry(char newUserName, char newID, char newDevName, pid_t newPSID,
-            short int newEntryType, int32_t newEntryTime,             char newHostName);
+            short newEntryType, int32_t newEntryTime,             char newHostName);
     void printEntry();
 private:
     char userName;
     char ID;
     char devName;
     pid_t PSID;
-    short int entryType;
+    short entryType;
     int32_t entryTime;
     char hostName;
 };
