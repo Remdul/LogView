@@ -5,7 +5,7 @@
 #include <utmp.h>
 #include "LogView.h"
 
-void menuHeader() {
+void resultsHeader() {
     //LINE 1
 	std::cout << std::setw(10) << "User"
     		<< std::setw(6) << ""
@@ -29,7 +29,7 @@ void menuHeader() {
 	            << std::endl;
 }
 
-void menuBody(utmp blockInput) {
+void resultsBody(utmp blockInput) {
     std::cout << std::setw(10) << blockInput.ut_user
     		<< std::setw(6) << blockInput.ut_id
     		<< std::setw(8) << blockInput.ut_line
@@ -41,10 +41,10 @@ void menuBody(utmp blockInput) {
             << std::endl;
 }
 
-void menuOutput(std::vector<utmp> blockVector) {
-	menuHeader();
+void resultsOutput(std::vector<utmp> blockVector) {
+	resultsHeader();
 
 	for (auto iter : blockVector) {
-		menuBody(iter);
+		resultsBody(iter);
 	}
 }
