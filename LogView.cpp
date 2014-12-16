@@ -49,7 +49,7 @@ int main()
 		}
 
 		menuOutput(blockEntries);
-
+		std::cout << "test::: " <<  searchString("\\^(a-z)", blockEntries) << std::endl;
 		std::cout << "Read in " << blockEntries.size() << " blocks."
 				<< std::endl;
 		std::cout << rawData(blockEntries) << std::endl;

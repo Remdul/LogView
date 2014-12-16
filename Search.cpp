@@ -31,8 +31,8 @@ std::string rawData(std::vector<utmp> blockEntries) {
  * reboot, 0, 3.13.0-40-generic, 0, 0x7fff5bcc427c, ~~, ~, 0, 0, 1418589862
  * bryan, 4863, :0, 0, 0x7fff5bcc427c, /3, pts/3, 0, 0, 1418652552
  */
-auto search(std::string searchString, std::vector<utmp> entries) {
-    auto findGroup = 10;
+std::string searchString(std::string searchString, std::vector<utmp> entries) {
+    std::string findGroup = "test";
     pcrecpp::RE regex(searchString);
     if (!regex.PartialMatch(rawData(entries))) {
         std::cout << "Could not parse data with search string: " << searchString << std::endl;
