@@ -57,7 +57,7 @@ int main()
 				blockEntries.push_back(blockEntry);
 			}
 
-			menuOutput(blockEntries);
+			resultsOutput(blockEntries);
 
 			std::cout << "Read in " << blockEntries.size() << " blocks."
 					<< std::endl;
