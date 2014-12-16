@@ -19,9 +19,11 @@ int main() {
         while (utmpFile)
         {
             utmpFile.read((char *) &blockEntry, sizeof(utmp));
-            std::cout << "Reading " << sizeof(utmp) << " characters... " << std::endl;
+            // std::cout << "Reading " << sizeof(utmp) << " characters... " << std::endl;
             blockEntries.push_back(blockEntry);
         }
+
+        menuOutput(blockEntries);
 
         std::cout << "Read in " << blockEntries.size() << " blocks." << std::endl;
         std::cout << rawData(blockEntries) << std::endl;
