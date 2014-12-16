@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <utmp.h>
 
+<<<<<<< HEAD
 class Entry {
 public:
     Entry() {}
@@ -19,9 +21,17 @@ private:
     short entryType;
     int32_t entryTime;
     char hostName;
+=======
+class
+{
+
+public:
+
+private:
+
+>>>>>>> e2be7d77afb102e2605b2b1d148fb1d6bfef322d
 };
 
-void menuHeader();
-void menuBody();
+void menuOutput(std::vector blockVector);
 
 #endif /* LOGVIEW_H_ */
