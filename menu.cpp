@@ -7,13 +7,13 @@
 
 void menuHeader() {
     std::cout << std::setw(15) << "User Name" << std::setw(10) << "ID"
-            << std::setw(15) << "Dev Name" << std::setw(10) << "PSID"
+            << std::setw(15) << "Device Name" << std::setw(10) << "PSID"
             << std::setw(15) << "Entry Type" << std::setw(15) << "Entry Time"
             << std::setw(15) << "Exit Status"
             << std::setw(15) << "Host Name" << std::endl;
 }
 
-void menuBody(Entry blockInput) {
+void menuBody(utmp blockInput) {
     std::cout << std::setw(15) << blockInput.ut_user << std::setw(10)
             << blockInput.ut_id << std::setw(15) << blockInput.ut_line
             << std::setw(10) << blockInput.ut_pid << std::setw(15)
