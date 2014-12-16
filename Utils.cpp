@@ -6,20 +6,17 @@
  */
 #include <iostream>
 #include <ctime>
+#include "LogView.h"
+#include <sstream>
 
-int epochConvert (x)
-{
-  time_t epochTime;
-  struct tm * ptm;
-
-  time ( &epochTime );
-
-  ptm = gmtime ( &epochTime );
-
-  std::cout << "Current time around the World:" << std::endl;
-
-  return 0;
+std::string epochConvert(long int unconvertedTime) {
+    time_t newTime = unconvertedTime;
+    struct tm convertedTime;
+    time(&newTime);
+    convertedTime = *gmtime(&newTime);
+    std::ostringstream timeString;
+    timeString << convertedTime.tm_hour << ":" << convertedTime.tm_min << ":"
+            << convertedTime.tm_sec << " " << convertedTime.tm_year << "/"
+            << convertedTime.tm_mon << "/" << convertedTime.tm_mday;
+    return timeString.str();
 }
-
-
-

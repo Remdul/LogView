@@ -1,0 +1,29 @@
+bryan@Valhalla:~/Programming/CPPWorkspace/LogView/build$ ./LogView 
+      User        Device           Entry          Entry    Exit                    
+      Name    ID    Name    PSID    Type           Time  Status           Host Name
+
+    reboot    ~~       ~       0       2     1418589862       0   3.13.0-40-generic
+  runlevel    ~~       ~      50       1     1418589862       0   3.13.0-40-generic
+     LOGIN     4    tty4    1071       6     1418589862       0                    
+     LOGIN     5    tty5    1075       6     1418589862       0                    
+     LOGIN     2    tty2    1082       6     1418589862       0                    
+     LOGIN     3    tty3    1086       6     1418589862       0                    
+     LOGIN     6    tty6    1095       6     1418589862       0                    
+     LOGIN     1    tty1    1452       6     1418589865       0                    
+     bryan    :0      :0    2696       7     1418596611       0                  :0
+     bryan    /3   pts/3    4863       7     1418652552       0                  :0
+     bryan    /5   pts/5    4863       7     1418673476       0                  :0
+     bryan    /5   pts/5    4863       7     1418673476       0                  :0
+Read in 12 blocks.
+reboot, 0, 3.13.0-40-generic, 0, 0x7fffafe10a6c, ~~, ~, 0, 0, 16:59:43 114/11/16
+runlevel, 50, 3.13.0-40-generic, 0, 0x7fffafe10a6c, ~~, ~, 0, 0, 16:59:43 114/11/16
+LOGIN, 1071, , 1071, 0x7fffafe10a6c, 4, tty4, 0, 0, 16:59:43 114/11/16
+LOGIN, 1075, , 1075, 0x7fffafe10a6c, 5, tty5, 0, 0, 16:59:43 114/11/16
+LOGIN, 1082, , 1082, 0x7fffafe10a6c, 2, tty2, 0, 0, 16:59:43 114/11/16
+LOGIN, 1086, , 1086, 0x7fffafe10a6c, 3, tty3, 0, 0, 16:59:43 114/11/16
+LOGIN, 1095, , 1095, 0x7fffafe10a6c, 6, tty6, 0, 0, 16:59:43 114/11/16
+LOGIN, 1452, , 1452, 0x7fffafe10a6c, 1, tty1, 0, 0, 16:59:43 114/11/16
+bryan, 2696, :0, 0, 0x7fffafe10a6c, :0, :0, 0, 0, 16:59:43 114/11/16
+bryan, 4863, :0, 0, 0x7fffafe10a6c, /3, pts/3, 0, 0, 16:59:43 114/11/16
+bryan, 4863, :0, 0, 0x7fffafe10a6c, /5, pts/5, 0, 0, 16:59:43 114/11/16
+bryan, 4863, :0, 0, 0x7fffafe10a6c, /5, pts/5, 0, 0, 16:59:43 114/11/16

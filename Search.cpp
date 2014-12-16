@@ -23,7 +23,7 @@ std::string rawData(std::vector<utmp> blockEntries) {
                 << ", " << iter.ut_session << ", " << iter.ut_addr_v6 << ", "
                 << iter.ut_id << ", " << iter.ut_line << ", "
                 << iter.ut_exit.e_exit << ", " << iter.ut_exit.e_termination
-                << ", " << iter.ut_tv.tv_sec << "\n";
+                << ", " << epochConvert((long int)iter.ut_tv.tv_sec) << "\n";
     }
     return stream.str();
 }
@@ -33,7 +33,7 @@ std::string rawData(std::vector<utmp> blockEntries) {
  */
 auto search(std::string searchString, std::vector<utmp> entries) {
     auto findGroup = 10;
-    pcrecpp::RE regex(s earchString);
+    pcrecpp::RE regex(searchString);
     if (!regex.PartialMatch(rawData(entries))) {
         std::cout << "Could not parse data with search string: " << searchString << std::endl;
         throw string("Error");
