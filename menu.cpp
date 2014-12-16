@@ -22,7 +22,7 @@ void menuBody(utmp blockInput) {
     		<< blockInput.ut_host << std::endl;
 }
 
-void menuOutput(std::vector blockVector) {
+void menuOutput(std::vector<utmp> blockVector) {
 	menuHeader();
 
 	for (auto iter : blockVector) {
