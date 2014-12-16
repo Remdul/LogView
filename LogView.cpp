@@ -41,6 +41,7 @@ int main()
 		std::cout << "[1] Search " << std::endl;
 		std::cout << "[2] Export to file" << std::endl;
 		std::cout << "[3] Results" << std::endl;
+		std::cout << "[4] Exit Program" << std::endl;
 
 		if (utmpFile)
 		{
