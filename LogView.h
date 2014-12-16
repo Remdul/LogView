@@ -11,5 +11,6 @@
 void menuOutput(std::vector<utmp> blockVector);
 std::string epochConvert(long int unconvertedTime);
 std::string rawData(std::vector<utmp> blockEntries);
+std::string searchString(std::string searchString, std::vector<utmp> entries);
 
 #endif /* LOGVIEW_H_ */
